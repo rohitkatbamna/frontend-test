@@ -178,6 +178,8 @@
 
 .add-product-modal .ant-modal-content {
   border-radius: 12px;
+  background-color: #fafafa;
+  padding: 0;
 }
 
 .modal-title {

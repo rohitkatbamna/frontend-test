@@ -73,13 +73,17 @@ function ProductList({ onAddProduct }: Readonly<ProductListProps>) {
               allowClear
             />
             <Button icon={<FilterOutlined />} className="hide-mobile" />
-            <Button icon={<CheckOutlined />} className="hide-mobile">Bulk Action</Button>
+            <Button icon={<CheckOutlined />} className="hide-mobile">
+              Bulk Action
+            </Button>
           </div>
           <div className="product-list__toolbar-right">
             <Button icon={<SwapOutlined rotate={90} />} iconPlacement="end" className="hide-mobile">
               Sort
             </Button>
-            <Button icon={<UserAddOutlined />} className="hide-mobile">Support</Button>
+            <Button icon={<UserAddOutlined />} className="hide-mobile">
+              Support
+            </Button>
             <Button type="primary" icon={<PlusOutlined />} onClick={onAddProduct}>
               Add Product
             </Button>

@@ -1,10 +1,12 @@
+import { useState, useEffect } from 'react'
+import type { ReactNode } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
+import { Layout } from 'antd'
+
+import Sidebar from './components/Sidebar'
 import ProductPage from './pages/ProductPage/ProductPage'
 import SendItemPage from './pages/SendItemPage/SendItemPage'
 import './App.css'
-import { Layout } from 'antd'
-import Sidebar from './components/Sidebar'
-import { useState, useEffect } from 'react'
 
 const { Sider, Content } = Layout
 
@@ -21,30 +23,25 @@ function App() {
   )
 }
 
-function FrontEndLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const [collapsed, setCollapsed] = useState<boolean>(false)
-  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768)
+function FrontEndLayout({ children }: Readonly<{ children: ReactNode }>) {
+  const [collapsed, setCollapsed] = useState(false)
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
 
   useEffect(() => {
     const handleResize = () => {
       const mobile = window.innerWidth < 768
       setIsMobile(mobile)
-      // Auto-collapse on mobile, auto-expand on desktop
-      if (mobile && !collapsed) {
-        setCollapsed(true)
-      } else if (!mobile && collapsed) {
-        setCollapsed(false)
-      }
+      setCollapsed(mobile)
     }
 
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [collapsed, setCollapsed])
+  }, [])
 
   if (isMobile) {
     return (
-      <div>
-        <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} isMobile={isMobile} />
+      <div className="app-mobile-wrapper">
+        <Sidebar isMobile collapsed={collapsed} setCollapsed={setCollapsed} />
         {children}
       </div>
     )
@@ -52,20 +49,10 @@ function FrontEndLayout({ children }: Readonly<{ children: React.ReactNode }>) {
 
   return (
     <Layout>
-      <Sider
-        style={{ backgroundColor: '#F5F5F5', borderRight: '1px solid #E8E8E8' }}
-        collapsed={collapsed}
-        width={258}
-      >
-        <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} isMobile={isMobile} />
+      <Sider className="app-sider" collapsed={collapsed} width={258}>
+        <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
       </Sider>
-      <Layout
-        style={{
-          paddingLeft: '24px',
-          paddingRight: '24px',
-          backgroundColor: '#FFFFFF',
-        }}
-      >
+      <Layout className="app-content-layout">
         <Content>{children}</Content>
       </Layout>
     </Layout>

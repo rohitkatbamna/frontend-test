@@ -8,14 +8,16 @@ import {
   InputNumber,
   Modal,
   Row,
-  Select,
   Space,
+  Select,
   Typography,
   Upload,
 } from 'antd'
+
 import { useAppDispatch } from '../../hooks/useAppDispatch'
 import { addProduct } from '../../store/productSlice'
 import type { Product } from '../../types/product'
+import './AddProductModal.css'
 
 interface AddProductModalProps {
   open: boolean
@@ -37,6 +39,9 @@ const CATEGORY_OPTIONS = [
   { label: 'Electronics', value: 'electronics' },
   { label: 'Beauty', value: 'beauty' },
 ]
+
+const MODAL_BODY_STYLES = { backgroundColor: '#fafafa', padding: 24, borderRadius: 8 }
+const MODAL_CONTAINER_STYLES = { padding: '0px' }
 
 function AddProductModal({ open, onCancel, onSubmit }: Readonly<AddProductModalProps>) {
   const [form] = Form.useForm<ProductFormValues>()
@@ -64,19 +69,20 @@ function AddProductModal({ open, onCancel, onSubmit }: Readonly<AddProductModalP
       footer={null}
       destroyOnHidden
       className="add-product-modal"
+      styles={{ body: MODAL_BODY_STYLES, container: MODAL_CONTAINER_STYLES }}
     >
       <Typography.Title level={4} style={{ marginBottom: 4 }}>
         Add Product
       </Typography.Title>
-      <Typography.Paragraph style={{ color: 'rgba(0,0,0,0.45)', marginBottom: 18 }}>
+      <Typography.Paragraph className="add-product-modal__subtitle">
         Provide product details, images, and pricing to make your Product available on the platform
       </Typography.Paragraph>
 
       <Form form={form} onFinish={handleFinish} layout="vertical">
         <Row gutter={16} align="stretch">
           <Col xs={24} md={12}>
-            <Card variant="outlined" style={{ height: '100%' }}>
-              <Typography.Title level={5} style={{ marginTop: 0 }}>
+            <Card variant="outlined" className="add-product-modal__card">
+              <Typography.Title level={5} className="add-product-modal__card-title">
                 General Information
               </Typography.Title>
               <Form.Item
@@ -98,12 +104,7 @@ function AddProductModal({ open, onCancel, onSubmit }: Readonly<AddProductModalP
                 name="category"
                 rules={[{ required: true, message: 'Please select category' }]}
               >
-                <Select
-                  size="large"
-                  placeholder="Select"
-                  options={CATEGORY_OPTIONS}
-                  style={{ width: '100%' }}
-                />
+                <Select size="large" placeholder="Select" options={CATEGORY_OPTIONS} />
               </Form.Item>
               <Row gutter={12}>
                 <Col span={12}>
@@ -136,8 +137,8 @@ function AddProductModal({ open, onCancel, onSubmit }: Readonly<AddProductModalP
           </Col>
 
           <Col xs={24} md={12}>
-            <Card variant="outlined" style={{ height: '100%' }}>
-              <Typography.Title level={5} style={{ marginTop: 0 }}>
+            <Card variant="outlined" className="add-product-modal__card">
+              <Typography.Title level={5} className="add-product-modal__card-title">
                 Product Media
               </Typography.Title>
               <Form.Item
@@ -145,17 +146,17 @@ function AddProductModal({ open, onCancel, onSubmit }: Readonly<AddProductModalP
                 name="photos"
                 rules={[{ required: true, message: 'Please upload a photo' }]}
               >
-                <Upload.Dragger beforeUpload={() => false} maxCount={1} className="upload-box">
+                <Upload.Dragger beforeUpload={() => false} maxCount={1}>
                   <p className="ant-upload-drag-icon">
                     <InboxOutlined />
                   </p>
-                  <Typography.Text strong className="upload-text">
+                  <Typography.Text>
                     Drop your Images, or{' '}
-                    <Typography.Text strong style={{ color: '#8d5ef9' }}>
+                    <Typography.Text className="add-product-modal__upload-browse">
                       Click to Browse
                     </Typography.Text>
                   </Typography.Text>
-                  <Typography.Paragraph style={{ color: 'rgba(0,0,0,0.45)', marginBottom: 0 }}>
+                  <Typography.Paragraph className="add-product-modal__upload-hint">
                     1600 x 1200 (4:3) recommended, up to 10MB
                   </Typography.Paragraph>
                 </Upload.Dragger>

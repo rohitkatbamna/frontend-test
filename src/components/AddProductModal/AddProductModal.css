@@ -1,0 +1,22 @@
+.add-product-modal__card {
+  height: 100%;
+  background-color: #ffffff;
+}
+
+.add-product-modal__card-title {
+  margin-top: 0;
+}
+
+.add-product-modal__subtitle {
+  color: rgba(0, 0, 0, 0.45);
+  margin-bottom: 18px;
+}
+
+.add-product-modal__upload-hint {
+  color: rgba(0, 0, 0, 0.45);
+  margin-bottom: 0;
+}
+
+.add-product-modal__upload-browse {
+  color: #8d5ef9;
+}

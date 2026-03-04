@@ -1,43 +1,14 @@
-#root {
-  min-height: 100vh;
+.app-sider {
+  background-color: #f5f5f5 !important;
+  border-right: 1px solid #e8e8e8;
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+.app-content-layout {
+  padding: 0 24px;
+  background-color: #ffffff;
 }
 
-/* Responsive Layout Styles */
-.frontend-layout {
-  min-height: 100vh;
+.app-mobile-wrapper {
   width: 100%;
-}
-
-/* Desktop Styles */
-.desktop-sider {
   min-height: 100vh;
-}
-
-/* Mobile Styles */
-@media (max-width: 767px) {
-  .mobile-layout {
-    width: 100%;
-  }
-
-  .mobile-content {
-    padding: 16px !important;
-    min-height: 100vh;
-  }
-
-  .frontend-layout {
-    flex-direction: column;
-  }
-}
-
-/* Tablet and up */
-@media (min-width: 768px) {
-  .desktop-sider {
-    height: 100%;
-  }
 }
