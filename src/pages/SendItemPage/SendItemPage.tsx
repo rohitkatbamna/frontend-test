@@ -1,3 +1,4 @@
+import { SearchOutlined, SortAscendingOutlined } from '@ant-design/icons'
 import { Button, Form, Input } from 'antd'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -46,8 +47,14 @@ function SendItemPage() {
       <div className="send-top-row">
         <h1>Send Item</h1>
         <div className="send-actions">
-          <Input size="large" placeholder="Search items..." />
-          <Button size="large">Sort</Button>
+          <Input
+            size="large"
+            placeholder="Search Items..."
+            prefix={<SearchOutlined style={{ color: '#bbb' }} />}
+          />
+          <Button size="large" icon={<SortAscendingOutlined />}>
+            Sort
+          </Button>
         </div>
       </div>
 
@@ -58,11 +65,6 @@ function SendItemPage() {
             <ItemCard key={item.id} item={item} onClick={openItemDetails} />
           ))}
         </div>
-      </div>
-
-      <div className="send-page-footer">
-        <div>@2025 Send365. All Right Reserved Privacy Policy Version 2.8.1</div>
-        <div>English</div>
       </div>
 
       <ItemDetailsModal

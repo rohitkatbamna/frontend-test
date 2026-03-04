@@ -3,12 +3,13 @@ import type { ReactNode } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Layout } from 'antd'
 
+import PageFooter from './components/PageFooter/PageFooter'
 import Sidebar from './components/Sidebar'
 import ProductPage from './pages/ProductPage/ProductPage'
 import SendItemPage from './pages/SendItemPage/SendItemPage'
 import './App.css'
 
-const { Sider, Content } = Layout
+const { Sider, Content, Footer } = Layout
 
 function App() {
   return (
@@ -43,6 +44,7 @@ function FrontEndLayout({ children }: Readonly<{ children: ReactNode }>) {
       <div className="app-mobile-wrapper">
         <Sidebar isMobile collapsed={collapsed} setCollapsed={setCollapsed} />
         {children}
+        <PageFooter />
       </div>
     )
   }
@@ -54,6 +56,9 @@ function FrontEndLayout({ children }: Readonly<{ children: ReactNode }>) {
       </Sider>
       <Layout className="app-content-layout">
         <Content>{children}</Content>
+        <Footer style={{ padding: 0 }}>
+          <PageFooter />
+        </Footer>
       </Layout>
     </Layout>
   )
