@@ -5,7 +5,7 @@ import {
   SwapOutlined,
   UserAddOutlined,
 } from '@ant-design/icons'
-import { Button, Card, Input, List, Pagination, Radio, Select, Typography } from 'antd'
+import { Badge, Button, Card, Input, List, Pagination, Radio, Select, Typography } from 'antd'
 import { useState } from 'react'
 import ProductCard from '../ProductCard'
 import getScreenHeight from '../../../../utils/getScreenHeight'
@@ -19,6 +19,30 @@ interface ProductListProps {
 type FilterValue = 'all' | 'active' | 'inactive'
 
 const CATEGORY_OPTIONS = [{ label: 'All Categories', value: 'all' }]
+
+function FilterLabel({
+  label,
+  count,
+  active = false,
+}: Readonly<{ label: string; count: number; active?: boolean }>) {
+  const bg = active ? '#8c57d9' : '#0000000F'
+  const textColor = active ? '#fff' : '#000000E0'
+  return (
+    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+      {label}
+      <Badge
+        count={count}
+        showZero
+        style={{ backgroundColor: bg, color: textColor, border: 'none' }}
+        styles={{
+          root: {
+            border: 'none',
+          },
+        }}
+      />
+    </span>
+  )
+}
 
 function ProductList({ onAddProduct }: Readonly<ProductListProps>) {
   const products = useAppSelector((state) => state.products.products)
@@ -57,9 +81,26 @@ function ProductList({ onAddProduct }: Readonly<ProductListProps>) {
         optionType="button"
         buttonStyle="solid"
         options={[
-          { label: `All ${counts.all}`, value: 'all' },
-          { label: `Active ${counts.active}`, value: 'active' },
-          { label: `Inactive ${counts.inactive}`, value: 'inactive' },
+          {
+            label: <FilterLabel label="All" count={counts.all} active={filter === 'all'} />,
+            value: 'all',
+          },
+          {
+            label: (
+              <FilterLabel label="Active" count={counts.active} active={filter === 'active'} />
+            ),
+            value: 'active',
+          },
+          {
+            label: (
+              <FilterLabel
+                label="Inactive"
+                count={counts.inactive}
+                active={filter === 'inactive'}
+              />
+            ),
+            value: 'inactive',
+          },
         ]}
       />
 
