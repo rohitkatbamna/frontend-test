@@ -1,7 +1,8 @@
 import { FilterOutlined, PlusOutlined } from '@ant-design/icons'
-import { Button, Input, List, Radio, Select, Typography } from 'antd'
+import { Button, Card, Input, List, Pagination, Radio, Select, Typography } from 'antd'
 import type { Product } from '../../types/product'
 import ProductCard from '../ProductCard'
+import getScreenHeight from '../../utils/getScreenHeight'
 
 interface ProductListProps {
   products: Product[]
@@ -50,39 +51,70 @@ function ProductList({ products, onAddProduct }: Readonly<ProductListProps>) {
         }}
       />
 
-      <div className="list-shell">
-        <div className="toolbar-row">
-          <div className="left-actions">
-            <Input size="large" placeholder="Search Product" />
-            <Button size="large" icon={<FilterOutlined />} />
-            <Button size="large">Bulk Action</Button>
+      <Card
+        styles={{
+          body: {
+            padding: '20px',
+          },
+        }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            marginBottom: '12px',
+          }}
+        >
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
+            <Input placeholder="Search Product" />
+            <Button icon={<FilterOutlined />} />
+            <Button>Bulk Action</Button>
           </div>
-          <div className="right-actions">
-            <Button size="large">Sort</Button>
-            <Button size="large">Support</Button>
-            <Button size="large" type="primary" icon={<PlusOutlined />} onClick={onAddProduct}>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <Button>Sort</Button>
+            <Button>Support</Button>
+            <Button type="primary" icon={<PlusOutlined />} onClick={onAddProduct}>
               Add Product
             </Button>
           </div>
         </div>
-
-        <List
-          itemLayout="vertical"
-          dataSource={products}
-          renderItem={(product) => (
-            <List.Item>
-              <ProductCard product={product} />
-            </List.Item>
-          )}
-          pagination={{
-            total: 85,
-            pageSize: 10,
-            showSizeChanger: true,
-            position: 'bottom',
-            align: 'start',
+        <Card
+          styles={{
+            body: {
+              padding: '0px',
+            },
           }}
-        />
-      </div>
+        >
+          <List
+            itemLayout="vertical"
+            dataSource={products}
+            renderItem={(product) => (
+              <List.Item>
+                <ProductCard product={product} />
+              </List.Item>
+            )}
+            split={false}
+            style={{
+              padding: '0px 24px',
+              backgroundColor: '#FAFAFA',
+              borderRadius: '8px',
+              height: getScreenHeight(280),
+              overflow: 'auto',
+            }}
+          />
+          <Pagination
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              padding: '12px 24px',
+              borderTop: '1px solid #E8E8E8',
+            }}
+            total={50}
+            pageSize={10}
+            showSizeChanger={true}
+          />
+        </Card>
+      </Card>
     </div>
   )
 }

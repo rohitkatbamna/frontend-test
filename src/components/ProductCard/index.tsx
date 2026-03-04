@@ -16,6 +16,8 @@ function ProductCard({ product }: Readonly<ProductCardProps>) {
         padding: '12px',
         borderRadius: '8px',
         border: '1px solid #E0E0E0',
+        backgroundColor: '#FFFFFF',
+        boxShadow: '0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
       }}
     >
       <Checkbox />

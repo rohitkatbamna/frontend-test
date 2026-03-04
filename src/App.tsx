@@ -23,7 +23,7 @@ function App() {
 function FrontEndLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const [collapsed, setCollapsed] = useState<boolean>(false)
   return (
-    <Layout style={{ minHeight: '100vh', gap: '24px' }}>
+    <Layout>
       <Sider
         style={{ backgroundColor: '#F5F5F5', borderRight: '1px solid #E8E8E8' }}
         collapsed={collapsed}
@@ -31,7 +31,13 @@ function FrontEndLayout({ children }: Readonly<{ children: React.ReactNode }>) {
       >
         <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
       </Sider>
-      <Layout>
+      <Layout
+        style={{
+          paddingLeft: '24px',
+          paddingRight: '24px',
+          backgroundColor: '#FFFFFF',
+        }}
+      >
         <Content>{children}</Content>
       </Layout>
     </Layout>

@@ -7,7 +7,7 @@ interface AddProductModalProps {
   onSubmit: () => void
 }
 
-function AddProductModal({ open, onCancel, onSubmit }: AddProductModalProps) {
+function AddProductModal({ open, onCancel, onSubmit }: Readonly<AddProductModalProps>) {
   const [form] = Form.useForm()
 
   const handleFinish = () => {
