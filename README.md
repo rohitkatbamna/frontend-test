@@ -5,6 +5,7 @@ A product management and gifting frontend application built with React, TypeScri
 ## Features
 
 ### Product List (`/product-list`)
+
 - Browse all products in a paginated, searchable list
 - Filter by status — **All**, **Active**, or **Inactive** — with live counts
 - Filter by category via dropdown
@@ -15,6 +16,7 @@ A product management and gifting frontend application built with React, TypeScri
 - Products are added to the global store and appear in the list immediately
 
 ### Send Item (`/send-item`)
+
 - Browse an item grid with search and sort controls
 - Side filter panel for refining the item list
 - Click an item card to open a details modal
@@ -24,24 +26,25 @@ A product management and gifting frontend application built with React, TypeScri
   3. **Order Confirmation** — success modal on valid submission
 
 ### General
+
 - Responsive layout: collapsible sidebar on desktop, mobile-friendly drawer navigation on smaller screens
 - Consistent Ant Design component library throughout
 
 ## Tech Stack
 
-| Category | Library |
-|---|---|
-| Framework | React 19 |
-| Language | TypeScript 5.9 |
-| Build Tool | Vite 7 |
-| UI Library | Ant Design 6 |
+| Category         | Library                     |
+| ---------------- | --------------------------- |
+| Framework        | React 19                    |
+| Language         | TypeScript 5.9              |
+| Build Tool       | Vite 7                      |
+| UI Library       | Ant Design 6                |
 | State Management | Redux Toolkit + React-Redux |
-| Routing | React Router DOM 7 |
-| HTTP Client | Axios |
-| Date Utility | Day.js |
-| Styling | CSS Modules |
-| Linting | ESLint + typescript-eslint |
-| Formatting | Prettier |
+| Routing          | React Router DOM 7          |
+| HTTP Client      | Axios                       |
+| Date Utility     | Day.js                      |
+| Styling          | CSS Modules                 |
+| Linting          | ESLint + typescript-eslint  |
+| Formatting       | Prettier                    |
 
 ## Project Structure
 

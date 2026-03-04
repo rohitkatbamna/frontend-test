@@ -169,7 +169,9 @@
 .send-item-card {
   border-radius: 12px;
   cursor: pointer;
-  transition: box-shadow 0.2s, transform 0.15s;
+  transition:
+    box-shadow 0.2s,
+    transform 0.15s;
 }
 
 .send-item-card:hover {

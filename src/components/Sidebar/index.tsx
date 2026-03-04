@@ -12,7 +12,6 @@ import { Avatar, Button, Menu, Switch } from 'antd'
 import type { MenuProps } from 'antd'
 import { useLocation, useNavigate } from 'react-router-dom'
 import BirdBoxIcon from '../../assets/BirdBoxIcon'
-import getScreenHeight from '../../utils/getScreenHeight'
 import './Sidebar.css'
 
 interface SidebarProps {
