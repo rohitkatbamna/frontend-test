@@ -68,6 +68,7 @@ function AddProductModal({ open, onCancel, onSubmit }: Readonly<AddProductModalP
       title={null}
       footer={null}
       destroyOnHidden
+      centered
       className="add-product-modal"
       styles={{ body: MODAL_BODY_STYLES, container: MODAL_CONTAINER_STYLES }}
     >

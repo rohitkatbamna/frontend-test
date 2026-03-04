@@ -21,6 +21,7 @@ function SendGiftModal({ open, item, form, onClose, onConfirm }: Readonly<SendGi
       className="send-modal"
       closeIcon={<CloseOutlined />}
       destroyOnHidden
+      centered
     >
       <div className="modal-title">Send Gift</div>
       <p className="modal-subtitle">

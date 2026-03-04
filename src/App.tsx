@@ -55,7 +55,7 @@ function FrontEndLayout({ children }: Readonly<{ children: ReactNode }>) {
         <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
       </Sider>
       <Layout className="app-content-layout">
-        <Content>{children}</Content>
+        <Content style={{ padding: '0 24px' }}>{children}</Content>
         <Footer style={{ padding: 0 }}>
           <PageFooter />
         </Footer>

@@ -143,7 +143,6 @@ function ProductList({ onAddProduct }: Readonly<ProductListProps>) {
             )}
             split={false}
             className="product-list__items"
-            style={{ height: getScreenHeight(290) }}
           />
           <Pagination
             className="product-list__pagination"

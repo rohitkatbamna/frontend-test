@@ -21,6 +21,7 @@ function ItemDetailsModal({ open, item, onClose, onSend }: Readonly<ItemDetailsM
       className="send-modal"
       closeIcon={<CloseOutlined />}
       destroyOnHidden
+      centered
     >
       <div className="modal-title">Item Details</div>
       <p className="modal-subtitle">

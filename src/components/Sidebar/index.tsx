@@ -66,8 +66,8 @@ function Sidebar({
   }
 
   return (
-    <>
-      <div style={{ height: getScreenHeight(), overflow: 'auto' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div style={{ flex: 1, overflow: 'auto' }}>
         <div className="sidebar-header">
           <div className="sidebar-logo">
             <BirdBoxIcon />
@@ -125,7 +125,7 @@ function Sidebar({
         />
       </div>
 
-      <div className="sider-bottom">
+      <div className="sider-bottom" style={{ marginTop: 'auto' }}>
         <div className="user-row">
           <Avatar size={40}>{userName.charAt(0)}</Avatar>
           {!collapsed && (
@@ -140,7 +140,7 @@ function Sidebar({
           {!collapsed && <span>Log Out</span>}
         </button>
       </div>
-    </>
+    </div>
   )
 }
 

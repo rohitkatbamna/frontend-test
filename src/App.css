@@ -1,10 +1,13 @@
 .app-sider {
   background-color: #f5f5f5 !important;
   border-right: 1px solid #e8e8e8;
+  position: sticky !important;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .app-content-layout {
-  padding: 0 24px;
   background-color: #ffffff;
 }
 
