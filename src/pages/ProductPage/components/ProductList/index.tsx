@@ -8,7 +8,6 @@ import {
 import { Badge, Button, Card, Input, List, Pagination, Radio, Select, Typography } from 'antd'
 import { useState } from 'react'
 import ProductCard from '../ProductCard'
-import getScreenHeight from '../../../../utils/getScreenHeight'
 import { useAppSelector } from '../../../../hooks/useAppSelector'
 import './ProductList.css'
 
