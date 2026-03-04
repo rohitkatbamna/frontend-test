@@ -6,7 +6,7 @@ interface SuccessModalProps {
   onClose: () => void
 }
 
-function SuccessModal({ open, onClose }: SuccessModalProps) {
+function SuccessModal({ open, onClose }: Readonly<SuccessModalProps>) {
   return (
     <Modal
       open={open}
