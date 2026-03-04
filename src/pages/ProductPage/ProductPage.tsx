@@ -1,15 +1,12 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import AddProductModal from '../../components/AddProductModal'
 import ProductList from '../../components/ProductList'
 import SuccessModal from '../../components/SuccessModal'
-import { productData } from '../../mock/productData'
 import './ProductPage.css'
 
 function ProductPage() {
   const [showAddProduct, setShowAddProduct] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
-
-  const products = useMemo(() => productData, [])
 
   const handleCreateProduct = () => {
     setShowAddProduct(false)
@@ -18,7 +15,7 @@ function ProductPage() {
 
   return (
     <>
-      <ProductList products={products} onAddProduct={() => setShowAddProduct(true)} />
+      <ProductList onAddProduct={() => setShowAddProduct(true)} />
       <AddProductModal
         open={showAddProduct}
         onCancel={() => setShowAddProduct(false)}

@@ -4,7 +4,8 @@ import SendItemPage from './pages/SendItemPage/SendItemPage'
 import './App.css'
 import { Layout } from 'antd'
 import Sidebar from './components/Sidebar'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+
 const { Sider, Content } = Layout
 
 function App() {
@@ -22,6 +23,33 @@ function App() {
 
 function FrontEndLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const [collapsed, setCollapsed] = useState<boolean>(false)
+  const [isMobile, setIsMobile] = useState<boolean>(window.innerWidth < 768)
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth < 768
+      setIsMobile(mobile)
+      // Auto-collapse on mobile, auto-expand on desktop
+      if (mobile && !collapsed) {
+        setCollapsed(true)
+      } else if (!mobile && collapsed) {
+        setCollapsed(false)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [collapsed, setCollapsed])
+
+  if (isMobile) {
+    return (
+      <div>
+        <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} isMobile={isMobile} />
+        {children}
+      </div>
+    )
+  }
+
   return (
     <Layout>
       <Sider
@@ -29,7 +57,7 @@ function FrontEndLayout({ children }: Readonly<{ children: React.ReactNode }>) {
         collapsed={collapsed}
         width={258}
       >
-        <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+        <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} isMobile={isMobile} />
       </Sider>
       <Layout
         style={{

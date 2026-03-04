@@ -35,15 +35,14 @@ function AddProductModal({ open, onCancel, onSubmit }: Readonly<AddProductModalP
           <div className="panel-card">
             <h3>General Information</h3>
             <Form.Item
-              label="Name *"
+              label="Name"
               name="name"
               rules={[{ required: true, message: 'Please enter name' }]}
             >
               <Input size="large" placeholder="Product Name" />
             </Form.Item>
-
             <Form.Item
-              label="Description *"
+              label="Description"
               name="description"
               rules={[{ required: true, message: 'Please enter description' }]}
             >
@@ -51,7 +50,7 @@ function AddProductModal({ open, onCancel, onSubmit }: Readonly<AddProductModalP
             </Form.Item>
 
             <Form.Item
-              label="Category *"
+              label="Category"
               name="category"
               rules={[{ required: true, message: 'Please select category' }]}
             >
@@ -68,14 +67,14 @@ function AddProductModal({ open, onCancel, onSubmit }: Readonly<AddProductModalP
 
             <div className="half-grid">
               <Form.Item
-                label="Processing Time *"
+                label="Processing Time"
                 name="processingTime"
                 rules={[{ required: true, message: 'Please enter time' }]}
               >
                 <Input size="large" placeholder="Enter Time" />
               </Form.Item>
               <Form.Item
-                label="Price *"
+                label="Price"
                 name="price"
                 rules={[{ required: true, message: 'Please enter price' }]}
               >
@@ -87,7 +86,7 @@ function AddProductModal({ open, onCancel, onSubmit }: Readonly<AddProductModalP
           <div className="panel-card">
             <h3>Product Media</h3>
             <Form.Item
-              label="Product Photos *"
+              label="Product Photos"
               name="photos"
               rules={[{ required: true, message: 'Please upload photo' }]}
             >

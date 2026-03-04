@@ -1,15 +1,24 @@
-import { FilterOutlined, PlusOutlined } from '@ant-design/icons'
+import {
+  CheckOutlined,
+  FilterOutlined,
+  PlusOutlined,
+  SwapOutlined,
+  UserAddOutlined,
+} from '@ant-design/icons'
 import { Button, Card, Input, List, Pagination, Radio, Select, Typography } from 'antd'
-import type { Product } from '../../types/product'
 import ProductCard from '../ProductCard'
 import getScreenHeight from '../../utils/getScreenHeight'
+import { useAppSelector } from '../../hooks/useAppDispatch'
+import { useAppDispatch } from '../../hooks/useAppSelector'
 
 interface ProductListProps {
-  products: Product[]
   onAddProduct: () => void
 }
 
-function ProductList({ products, onAddProduct }: Readonly<ProductListProps>) {
+function ProductList({ onAddProduct }: Readonly<ProductListProps>) {
+  const dispatch = useAppDispatch()
+  const productsList = useAppSelector((state) => state.products.products)
+
   return (
     <div>
       <div
@@ -67,12 +76,16 @@ function ProductList({ products, onAddProduct }: Readonly<ProductListProps>) {
         >
           <div style={{ display: 'flex', gap: '8px', marginBottom: '12px' }}>
             <Input placeholder="Search Product" />
-            <Button icon={<FilterOutlined />} />
-            <Button>Bulk Action</Button>
+            <Button>
+              <FilterOutlined />
+            </Button>
+            <Button icon={<CheckOutlined />}>Bulk Action</Button>
           </div>
           <div style={{ display: 'flex', gap: '8px' }}>
-            <Button>Sort</Button>
-            <Button>Support</Button>
+            <Button icon={<SwapOutlined rotate={90} />} iconPlacement="end">
+              Sort
+            </Button>
+            <Button icon={<UserAddOutlined />}> Support</Button>
             <Button type="primary" icon={<PlusOutlined />} onClick={onAddProduct}>
               Add Product
             </Button>
@@ -87,7 +100,7 @@ function ProductList({ products, onAddProduct }: Readonly<ProductListProps>) {
         >
           <List
             itemLayout="vertical"
-            dataSource={products}
+            dataSource={productsList}
             renderItem={(product) => (
               <List.Item>
                 <ProductCard product={product} />

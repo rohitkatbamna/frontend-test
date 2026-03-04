@@ -19,6 +19,7 @@ interface SidebarProps {
   userRole?: string
   collapsed?: boolean
   setCollapsed?: (collapsed: boolean | ((prev: boolean) => boolean)) => void
+  isMobile?: boolean
 }
 
 const keyToPath: Record<string, string> = {
@@ -45,11 +46,25 @@ function Sidebar({
   userName = 'Mia Smith',
   userRole = 'Vendor',
   collapsed = false,
+  isMobile = false,
   setCollapsed = () => {},
 }: Readonly<SidebarProps>) {
   const location = useLocation()
   const navigate = useNavigate()
   const activeKey = selectedKey ?? getSelectedFromPath(location.pathname)
+
+  if (isMobile) {
+    return (
+      <MobileSidebar
+        selectedKey={selectedKey}
+        userName={userName}
+        userRole={userRole}
+        collapsed={collapsed}
+        setCollapsed={setCollapsed}
+        isMobile={isMobile}
+      />
+    )
+  }
 
   return (
     <>
@@ -81,16 +96,20 @@ function Sidebar({
             <BirdBoxIcon />
             {!collapsed && <span>BIRDBOX</span>}
           </div>
-          <Button
-            onClick={() => setCollapsed((prev: boolean) => !prev)}
-            aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-            size="small"
-          >
-            {collapsed ? <RightOutlined /> : <LeftOutlined />}
-          </Button>
+          {isMobile ? (
+            <></>
+          ) : (
+            <Button
+              onClick={() => setCollapsed((prev: boolean) => !prev)}
+              aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+              size="small"
+            >
+              {collapsed ? <RightOutlined /> : <LeftOutlined />}
+            </Button>
+          )}
         </div>
         <Menu
-          mode="inline"
+          mode={isMobile ? 'horizontal' : 'inline'}
           selectedKeys={[activeKey]}
           style={{ backgroundColor: '#F5F5F5', border: 'none' }}
           items={[
@@ -159,6 +178,71 @@ function Sidebar({
         </button>
       </div>
     </>
+  )
+}
+
+function MobileSidebar({
+  selectedKey,
+  userName,
+  userRole,
+  collapsed,
+  setCollapsed,
+  isMobile,
+}: MobileSidebarProps) {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const activeKey = selectedKey ?? getSelectedFromPath(location.pathname)
+
+  return (
+    <div className="mobile-sidebar">
+      <div
+        style={{
+          padding: '16px',
+          display: 'flex',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: '12px',
+        }}
+      >
+        <div className="mobile-sidebar-title">
+          <BirdBoxIcon />
+          <span>BIRDBOX</span>
+        </div>
+        <div className="dark-mode-row">
+          <span>Dark Mode</span>
+          <Switch size="small" />
+        </div>
+      </div>
+      <Menu
+        mode="horizontal"
+        selectedKeys={[activeKey]}
+        items={[
+          {
+            key: 'dashboard',
+            icon: <LayoutFilled />,
+            label: 'Dashboard',
+          },
+
+          {
+            key: 'product-list',
+            icon: <ProductFilled />,
+            label: 'Product List',
+          },
+          {
+            key: 'send-item',
+            icon: <TruckFilled />,
+            label: 'Send Item',
+          },
+          {
+            key: 'notifications',
+            icon: <BellFilled />,
+            label: 'Notifications',
+          },
+        ]}
+        onClick={({ key }) => navigate(keyToPath[key] ?? '/product-list')}
+      />
+    </div>
   )
 }
 

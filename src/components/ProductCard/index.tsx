@@ -1,4 +1,4 @@
-import { Checkbox, Tag, Image, Typography } from 'antd'
+import { Checkbox, Image, Typography } from 'antd'
 import type { Product } from '../../types/product'
 import imageGiven from '../../assets/gift.png'
 
@@ -15,7 +15,7 @@ function ProductCard({ product }: Readonly<ProductCardProps>) {
         alignItems: 'center',
         padding: '12px',
         borderRadius: '8px',
-        border: '1px solid #E0E0E0',
+        border: '1px solid #0000000F',
         backgroundColor: '#FFFFFF',
         boxShadow: '0px 1px 2px 0px rgba(0, 0, 0, 0.05)',
       }}

@@ -1,7 +1,6 @@
 export type ProductStatus = 'Active' | 'Inactive'
 
 export interface Product {
-  image: unknown
   id: string
   name: string
   price: number
