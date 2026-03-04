@@ -1,8 +1,9 @@
 import {
-  BulbOutlined,
+  BellFilled,
   LayoutFilled,
   LeftOutlined,
   LogoutOutlined,
+  MoonFilled,
   ProductFilled,
   RightOutlined,
   TruckFilled,
@@ -64,7 +65,7 @@ function Sidebar({
             alignItems: 'center',
             justifyContent: 'space-between',
             padding: '16px',
-            gap: '3px',
+            gap: '2px',
           }}
         >
           <div
@@ -115,14 +116,6 @@ function Sidebar({
                 },
               ],
             },
-          ]}
-          onClick={({ key }) => navigate(keyToPath[key] ?? '/product-list')}
-          inlineCollapsed={collapsed}
-        />
-        <Menu
-          mode="inline"
-          style={{ backgroundColor: '#F5F5F5', border: 'none' }}
-          items={[
             {
               key: 'system',
               label: 'SYSTEM',
@@ -130,12 +123,12 @@ function Sidebar({
               children: [
                 {
                   key: 'notifications',
-                  icon: <BulbOutlined />,
+                  icon: <BellFilled />,
                   label: 'Notifications',
                 },
                 {
                   key: 'dark-mode',
-                  icon: <BulbOutlined />,
+                  icon: <MoonFilled />,
                   label: (
                     <div className="dark-mode-row">
                       <span>Dark Mode</span>
@@ -146,6 +139,7 @@ function Sidebar({
               ],
             },
           ]}
+          onClick={({ key }) => navigate(keyToPath[key] ?? '/product-list')}
           inlineCollapsed={collapsed}
         />
       </div>
