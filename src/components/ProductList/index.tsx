@@ -72,16 +72,14 @@ function ProductList({ onAddProduct }: Readonly<ProductListProps>) {
               onChange={(e) => setSearch(e.target.value)}
               allowClear
             />
-            <Button>
-              <FilterOutlined />
-            </Button>
-            <Button icon={<CheckOutlined />}>Bulk Action</Button>
+            <Button icon={<FilterOutlined />} className="hide-mobile" />
+            <Button icon={<CheckOutlined />} className="hide-mobile">Bulk Action</Button>
           </div>
           <div className="product-list__toolbar-right">
-            <Button icon={<SwapOutlined rotate={90} />} iconPlacement="end">
+            <Button icon={<SwapOutlined rotate={90} />} iconPlacement="end" className="hide-mobile">
               Sort
             </Button>
-            <Button icon={<UserAddOutlined />}>Support</Button>
+            <Button icon={<UserAddOutlined />} className="hide-mobile">Support</Button>
             <Button type="primary" icon={<PlusOutlined />} onClick={onAddProduct}>
               Add Product
             </Button>
