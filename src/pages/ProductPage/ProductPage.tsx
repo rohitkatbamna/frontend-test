@@ -21,21 +21,15 @@ function ProductPage() {
   }
 
   return (
-    <Layout className="product-layout">
-      <Sidebar />
-      <Layout>
-        <Content className="product-content">
-          <ProductList products={products} onAddProduct={() => setShowAddProduct(true)} />
-        </Content>
-      </Layout>
-
+    <>
+      <ProductList products={products} onAddProduct={() => setShowAddProduct(true)} />
       <AddProductModal
         open={showAddProduct}
         onCancel={() => setShowAddProduct(false)}
         onSubmit={handleCreateProduct}
       />
       <SuccessModal open={showSuccess} onClose={() => setShowSuccess(false)} />
-    </Layout>
+    </>
   )
 }
 

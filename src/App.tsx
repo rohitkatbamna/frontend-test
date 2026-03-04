@@ -2,15 +2,39 @@ import { Navigate, Route, Routes } from 'react-router-dom'
 import ProductPage from './pages/ProductPage/ProductPage'
 import SendItemPage from './pages/SendItemPage/SendItemPage'
 import './App.css'
+import { Layout } from 'antd'
+import Sidebar from './components/Sidebar'
+import { useState } from 'react'
+const { Sider, Content } = Layout
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/product-list" replace />} />
-      <Route path="/product-list" element={<ProductPage />} />
-      <Route path="/send-item" element={<SendItemPage />} />
-      <Route path="*" element={<Navigate to="/product-list" replace />} />
-    </Routes>
+    <FrontEndLayout>
+      <Routes>
+        <Route path="/" element={<Navigate to="/product-list" replace />} />
+        <Route path="/product-list" element={<ProductPage />} />
+        <Route path="/send-item" element={<SendItemPage />} />
+        <Route path="*" element={<Navigate to="/product-list" replace />} />
+      </Routes>
+    </FrontEndLayout>
+  )
+}
+
+function FrontEndLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const [collapsed, setCollapsed] = useState<boolean>(false)
+  return (
+    <Layout style={{ minHeight: '100vh', gap: '24px' }}>
+      <Sider
+        style={{ backgroundColor: '#F5F5F5', borderRight: '1px solid #E8E8E8' }}
+        collapsed={collapsed}
+        width={258}
+      >
+        <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
+      </Sider>
+      <Layout>
+        <Content>{children}</Content>
+      </Layout>
+    </Layout>
   )
 }
 

@@ -1,23 +1,8 @@
 import { ArrowLeftOutlined, CheckOutlined, CloseOutlined } from '@ant-design/icons'
-import {
-  Button,
-  Card,
-  Checkbox,
-  Col,
-  Divider,
-  Form,
-  Input,
-  Layout,
-  Modal,
-  Row,
-  Select,
-  Slider,
-} from 'antd'
+import { Button, Card, Checkbox, Col, Divider, Form, Input, Modal, Row, Select, Slider } from 'antd'
 import { useMemo, useState } from 'react'
-import Sidebar from '../../components/Sidebar'
-import './SendItemPage.css'
 
-const { Content } = Layout
+import './SendItemPage.css'
 
 interface Item {
   id: number
@@ -64,87 +49,78 @@ function SendItemPage() {
   }
 
   return (
-    <Layout className="product-layout">
-      <Sidebar selectedKey="send-item" userName="Kevin Smith" userRole="Designer" />
-      <Layout>
-        <Content className="product-content send-page-content">
-          <div className="send-top-row">
-            <h1>Send Item</h1>
-            <div className="send-actions">
-              <Input size="large" placeholder="Search items..." />
-              <Button size="large">Sort</Button>
+    <div>
+      <div className="send-top-row">
+        <h1>Send Item</h1>
+        <div className="send-actions">
+          <Input size="large" placeholder="Search items..." />
+          <Button size="large">Sort</Button>
+        </div>
+      </div>
+
+      <div className="send-shell">
+        <Card className="filter-card">
+          <div className="filter-head">
+            <h3>Filters</h3>
+            <Button>Clear All</Button>
+          </div>
+
+          <div className="filter-section">
+            <div className="filter-title">Categories</div>
+            {Array.from({ length: 8 }).map((_, index) => (
+              <Checkbox key={`c-${index}`} defaultChecked={index === 0}>
+                Name
+              </Checkbox>
+            ))}
+            <button type="button" className="more-link">
+              +10 More
+            </button>
+          </div>
+
+          <Divider />
+
+          <div className="filter-section">
+            <div className="filter-title">Price Range</div>
+            <Slider range defaultValue={[0, 8000]} max={8000} />
+            <div className="range-labels">
+              <span>$0</span>
+              <span>$8,000</span>
             </div>
           </div>
 
-          <div className="send-shell">
-            <Card className="filter-card">
-              <div className="filter-head">
-                <h3>Filters</h3>
-                <Button>Clear All</Button>
-              </div>
+          <Divider />
 
-              <div className="filter-section">
-                <div className="filter-title">Categories</div>
-                {Array.from({ length: 8 }).map((_, index) => (
-                  <Checkbox key={`c-${index}`} defaultChecked={index === 0}>
-                    Name
-                  </Checkbox>
-                ))}
-                <button type="button" className="more-link">
-                  +10 More
-                </button>
-              </div>
+          <div className="filter-section">
+            <div className="filter-title">Vendors</div>
+            {Array.from({ length: 8 }).map((_, index) => (
+              <Checkbox key={`v-${index}`} defaultChecked={index === 0}>
+                Name
+              </Checkbox>
+            ))}
+            <button type="button" className="more-link">
+              +10 More
+            </button>
+          </div>
+        </Card>
 
-              <Divider />
-
-              <div className="filter-section">
-                <div className="filter-title">Price Range</div>
-                <Slider range defaultValue={[0, 8000]} max={8000} />
-                <div className="range-labels">
-                  <span>$0</span>
-                  <span>$8,000</span>
-                </div>
-              </div>
-
-              <Divider />
-
-              <div className="filter-section">
-                <div className="filter-title">Vendors</div>
-                {Array.from({ length: 8 }).map((_, index) => (
-                  <Checkbox key={`v-${index}`} defaultChecked={index === 0}>
-                    Name
-                  </Checkbox>
-                ))}
-                <button type="button" className="more-link">
-                  +10 More
-                </button>
-              </div>
+        <div className="item-grid">
+          {cards.map((item) => (
+            <Card key={item.id} className="send-item-card" onClick={() => openItemDetails(item)}>
+              <div className="shoe-hero" />
+              <div className="dots">........</div>
+              <div className="item-name">{item.name}</div>
+              <div className="item-price">${item.price}</div>
+              <div className="item-vendor-label">Vendor</div>
+              <div className="item-vendor">{item.vendor}</div>
             </Card>
+          ))}
+        </div>
+      </div>
 
-            <div className="item-grid">
-              {cards.map((item) => (
-                <Card
-                  key={item.id}
-                  className="send-item-card"
-                  onClick={() => openItemDetails(item)}
-                >
-                  <div className="shoe-hero" />
-                  <div className="dots">........</div>
-                  <div className="item-name">{item.name}</div>
-                  <div className="item-price">${item.price}</div>
-                  <div className="item-vendor-label">Vendor</div>
-                  <div className="item-vendor">{item.vendor}</div>
-                </Card>
-              ))}
-            </div>
-          </div>
-
-          <div className="send-page-footer">
-            <div>@2025 Send365. All Right Reserved Privacy Policy Version 2.8.1</div>
-            <div>English</div>
-          </div>
-        </Content>
-      </Layout>
+      <div className="send-page-footer">
+        <div>@2025 Send365. All Right Reserved Privacy Policy Version 2.8.1</div>
+        <div>English</div>
+      </div>
 
       <Modal
         open={showItemDetails}
@@ -356,7 +332,7 @@ function SendItemPage() {
           <p>Your Order has been successfully created.</p>
         </div>
       </Modal>
-    </Layout>
+    </div>
   )
 }
 

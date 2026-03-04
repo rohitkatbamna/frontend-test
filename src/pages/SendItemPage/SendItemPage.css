@@ -26,6 +26,22 @@
   font-size: 30px;
 }
 
+.brand-row > span {
+  font-size: 32px;
+}
+
+.collapse-btn {
+  margin-left: auto;
+  border: 1px solid #ddd;
+  background: #fff;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
 .menu-section-label {
   padding: 14px 22px 8px;
   color: #8f8f8f;
@@ -55,6 +71,20 @@
   margin-top: auto;
   border-top: 1px solid #e2e2e2;
   padding: 18px 12px;
+}
+
+.product-sider.is-collapsed .brand-row {
+  justify-content: center;
+  padding-inline: 10px;
+}
+
+.product-sider.is-collapsed .collapse-btn {
+  margin-left: 0;
+}
+
+.product-sider.is-collapsed .user-row,
+.product-sider.is-collapsed .logout-btn {
+  justify-content: center;
 }
 
 .user-row {
