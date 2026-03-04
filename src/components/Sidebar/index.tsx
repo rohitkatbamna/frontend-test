@@ -95,15 +95,15 @@ function Sidebar({
           style={{ backgroundColor: '#F5F5F5', border: 'none' }}
           items={[
             {
+              key: 'dashboard',
+              icon: <LayoutFilled />,
+              label: 'Dashboard',
+            },
+            {
               key: 'order',
               label: 'ORDER',
               type: 'group',
               children: [
-                {
-                  key: 'dashboard',
-                  icon: <LayoutFilled />,
-                  label: 'Dashboard',
-                },
                 {
                   key: 'product-list',
                   icon: <ProductFilled />,

@@ -1,5 +1,5 @@
 import { FilterOutlined, PlusOutlined } from '@ant-design/icons'
-import { Button, Input, Segmented, Select } from 'antd'
+import { Button, Input, List, Radio, Select, Typography } from 'antd'
 import type { Product } from '../../types/product'
 import ProductCard from '../ProductCard'
 
@@ -8,25 +8,46 @@ interface ProductListProps {
   onAddProduct: () => void
 }
 
-function ProductList({ products, onAddProduct }: ProductListProps) {
+function ProductList({ products, onAddProduct }: Readonly<ProductListProps>) {
   return (
-    <div className="product-list-page">
-      <div className="header-row">
-        <h1>Product List</h1>
+    <div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          marginBottom: '12px',
+          marginTop: '12px',
+        }}
+      >
+        <Typography.Title
+          level={4}
+          style={{
+            margin: '0',
+          }}
+        >
+          Product List
+        </Typography.Title>
         <Select
           defaultValue="All Categories"
           options={[{ label: 'All Categories', value: 'All Categories' }]}
         />
       </div>
 
-      <Segmented
-        className="list-status-tabs"
+      <Radio.Group
+        block
         options={[
           { label: 'All 47', value: 'all' },
           { label: 'Active 14', value: 'active' },
           { label: 'Inactive 2', value: 'inactive' },
         ]}
-        defaultValue="all"
+        defaultValue="Apple"
+        optionType="button"
+        buttonStyle="solid"
+        style={{
+          width: '35%',
+          marginBottom: '12px',
+        }}
       />
 
       <div className="list-shell">
@@ -45,16 +66,22 @@ function ProductList({ products, onAddProduct }: ProductListProps) {
           </div>
         </div>
 
-        <div className="rows-wrap">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-
-        <div className="pagination-row">
-          <div className="pager">1 2 3 4 5 ... 50</div>
-          <div className="products-count">Total 85 Products</div>
-        </div>
+        <List
+          itemLayout="vertical"
+          dataSource={products}
+          renderItem={(product) => (
+            <List.Item>
+              <ProductCard product={product} />
+            </List.Item>
+          )}
+          pagination={{
+            total: 85,
+            pageSize: 10,
+            showSizeChanger: true,
+            position: 'bottom',
+            align: 'start',
+          }}
+        />
       </div>
     </div>
   )

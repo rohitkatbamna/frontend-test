@@ -1,13 +1,9 @@
-import { Layout } from 'antd'
 import { useMemo, useState } from 'react'
 import AddProductModal from '../../components/AddProductModal'
 import ProductList from '../../components/ProductList'
-import Sidebar from '../../components/Sidebar'
 import SuccessModal from '../../components/SuccessModal'
 import { productData } from '../../mock/productData'
 import './ProductPage.css'
-
-const { Content } = Layout
 
 function ProductPage() {
   const [showAddProduct, setShowAddProduct] = useState(false)
