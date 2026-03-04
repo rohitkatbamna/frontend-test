@@ -1,5 +1,4 @@
-import { CheckOutlined } from '@ant-design/icons'
-import { Modal } from 'antd'
+import { Modal, Result } from 'antd'
 
 interface SuccessModalProps {
   open: boolean
@@ -17,13 +16,11 @@ function SuccessModal({ open, onClose }: Readonly<SuccessModalProps>) {
       className="success-modal"
       destroyOnHidden
     >
-      <div className="success-content">
-        <div className="success-icon">
-          <CheckOutlined />
-        </div>
-        <h2>Product added Successfully</h2>
-        <p>Your request has been completed</p>
-      </div>
+      <Result
+        status="success"
+        title="Product added Successfully"
+        subTitle="Your request has been completed"
+      />
     </Modal>
   )
 }

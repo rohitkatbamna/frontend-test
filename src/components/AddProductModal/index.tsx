@@ -137,7 +137,11 @@ function AddProductModal({ open, onCancel, onSubmit }: Readonly<AddProductModalP
           </Col>
 
           <Col xs={24} md={12}>
-            <Card variant="outlined" className="add-product-modal__card">
+            <Card
+              variant="outlined"
+              className="add-product-modal__card"
+              style={{ height: 'fit-content' }}
+            >
               <Typography.Title level={5} className="add-product-modal__card-title">
                 Product Media
               </Typography.Title>
