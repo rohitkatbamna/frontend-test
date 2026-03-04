@@ -14,9 +14,9 @@ import {
   Upload,
 } from 'antd'
 
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { addProduct } from '../../store/productSlice'
-import type { Product } from '../../types/product'
+import { useAppDispatch } from '../../../../hooks/useAppDispatch'
+import { addProduct } from '../../../../store/productSlice'
+import type { Product } from '../../../../types/product'
 import './AddProductModal.css'
 
 interface AddProductModalProps {

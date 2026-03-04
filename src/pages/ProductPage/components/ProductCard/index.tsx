@@ -1,10 +1,10 @@
 import { DeleteOutlined, EllipsisOutlined } from '@ant-design/icons'
 import { Checkbox, Divider, Dropdown, Image, Typography } from 'antd'
 import type { MenuProps } from 'antd'
-import type { Product } from '../../types/product'
-import imageGiven from '../../assets/gift.png'
-import { useAppDispatch } from '../../hooks/useAppDispatch'
-import { deleteProduct } from '../../store/productSlice'
+import type { Product } from '../../../../types/product'
+import imageGiven from '../../../../assets/gift.png'
+import { useAppDispatch } from '../../../../hooks/useAppDispatch'
+import { deleteProduct } from '../../../../store/productSlice'
 import './ProductCard.css'
 
 interface ProductCardProps {

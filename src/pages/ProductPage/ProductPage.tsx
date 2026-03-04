@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import AddProductModal from '../../components/AddProductModal'
-import ProductList from '../../components/ProductList'
-import SuccessModal from '../../components/SuccessModal'
+import AddProductModal from './components/AddProductModal'
+import ProductList from './components/ProductList'
+import SuccessModal from './components/SuccessModal'
 import './ProductPage.css'
 
 function ProductPage() {
