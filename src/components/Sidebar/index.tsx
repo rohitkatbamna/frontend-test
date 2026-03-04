@@ -57,9 +57,7 @@ function Sidebar({
   const activeKey = selectedKey ?? getSelectedFromPath(location.pathname)
 
   if (isMobile) {
-    return (
-      <MobileSidebar selectedKey={selectedKey} userName={userName} userRole={userRole} />
-    )
+    return <MobileSidebar selectedKey={selectedKey} userName={userName} userRole={userRole} />
   }
 
   const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
@@ -115,10 +113,7 @@ function Sidebar({
                   key: 'dark-mode',
                   icon: <MoonFilled />,
                   label: (
-                    <div
-                      className="dark-mode-row"
-                      onClick={(e) => e.stopPropagation()}
-                    >
+                    <div className="dark-mode-row" onClick={(e) => e.stopPropagation()}>
                       <span>Dark Mode</span>
                       <Switch size="small" />
                     </div>
