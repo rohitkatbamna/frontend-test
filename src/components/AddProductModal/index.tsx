@@ -1,5 +1,8 @@
 import { InboxOutlined } from '@ant-design/icons'
 import { Button, Form, Input, Modal, Select, Upload } from 'antd'
+import { useAppDispatch } from '../../hooks/useAppDispatch'
+import { addProduct } from '../../store/productSlice'
+import type { Product } from '../../types/product'
 
 interface AddProductModalProps {
   open: boolean
@@ -10,7 +13,18 @@ interface AddProductModalProps {
 function AddProductModal({ open, onCancel, onSubmit }: Readonly<AddProductModalProps>) {
   const [form] = Form.useForm()
 
-  const handleFinish = () => {
+  const dispatch = useAppDispatch()
+
+  const handleFinish = (values: any) => {
+    const newProduct: Product = {
+      id: Date.now().toString(),
+      name: values.name,
+      price: Number(values.price) || 0,
+      status: 'Active',
+      category: values.category,
+    }
+
+    dispatch(addProduct(newProduct))
     form.resetFields()
     onSubmit()
   }

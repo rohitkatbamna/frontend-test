@@ -8,15 +8,13 @@ import {
 import { Button, Card, Input, List, Pagination, Radio, Select, Typography } from 'antd'
 import ProductCard from '../ProductCard'
 import getScreenHeight from '../../utils/getScreenHeight'
-import { useAppSelector } from '../../hooks/useAppDispatch'
-import { useAppDispatch } from '../../hooks/useAppSelector'
+import { useAppSelector } from '../../hooks/useAppSelector'
 
 interface ProductListProps {
   onAddProduct: () => void
 }
 
 function ProductList({ onAddProduct }: Readonly<ProductListProps>) {
-  const dispatch = useAppDispatch()
   const productsList = useAppSelector((state) => state.products.products)
 
   return (
