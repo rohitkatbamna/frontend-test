@@ -14,7 +14,7 @@ function ProductPage() {
   }
 
   return (
-    <>
+    <div>
       <ProductList onAddProduct={() => setShowAddProduct(true)} />
       <AddProductModal
         open={showAddProduct}
@@ -22,7 +22,7 @@ function ProductPage() {
         onSubmit={handleCreateProduct}
       />
       <SuccessModal open={showSuccess} onClose={() => setShowSuccess(false)} />
-    </>
+    </div>
   )
 }
 

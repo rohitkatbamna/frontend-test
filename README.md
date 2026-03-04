@@ -1,73 +1,111 @@
-# React + TypeScript + Vite
+# Frontend Test
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A product management and gifting frontend application built with React, TypeScript, and Ant Design. It provides two core workflows: managing a product catalogue and sending items as gifts to recipients.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Product List (`/product-list`)
+- Browse all products in a paginated, searchable list
+- Filter by status — **All**, **Active**, or **Inactive** — with live counts
+- Filter by category via dropdown
+- Search products by name with instant filtering
+- Add new products through a full-featured modal form:
+  - General information: name, description, category, processing time, and price
+  - Product media: drag-and-drop image upload
+- Products are added to the global store and appear in the list immediately
 
-## React Compiler
+### Send Item (`/send-item`)
+- Browse an item grid with search and sort controls
+- Side filter panel for refining the item list
+- Click an item card to open a details modal
+- Send the item as a gift through a multi-step flow:
+  1. **Item Details** — review the selected item
+  2. **Send Gift** — fill in recipient details (name, email, company) and delivery address (line 1, line 2, country, zip, city, state)
+  3. **Order Confirmation** — success modal on valid submission
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### General
+- Responsive layout: collapsible sidebar on desktop, mobile-friendly drawer navigation on smaller screens
+- Consistent Ant Design component library throughout
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Category | Library |
+|---|---|
+| Framework | React 19 |
+| Language | TypeScript 5.9 |
+| Build Tool | Vite 7 |
+| UI Library | Ant Design 6 |
+| State Management | Redux Toolkit + React-Redux |
+| Routing | React Router DOM 7 |
+| HTTP Client | Axios |
+| Date Utility | Day.js |
+| Styling | CSS Modules |
+| Linting | ESLint + typescript-eslint |
+| Formatting | Prettier |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Project Structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── assets/             # Static assets and icon components
+├── components/         # Shared layout components (Sidebar, PageFooter)
+├── hooks/              # Typed Redux hooks (useAppDispatch, useAppSelector)
+├── mock/               # Mock data for products and items
+├── pages/
+│   ├── ProductPage/    # Product list, add product modal, success modal
+│   └── SendItemPage/   # Item grid, item details, send gift, order success
+├── store/              # Redux store, productSlice, itemSlice
+├── types/              # Shared TypeScript interfaces (Product, Item)
+└── utils/              # Utility helpers (e.g. getScreenHeight)
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 18 or later
+- npm 9 or later
+
+### Installation
+
+```bash
+npm install
+```
+
+### Development
+
+```bash
+npm run dev
+```
+
+Opens the app at `http://localhost:5173` with hot module replacement.
+
+### Build
+
+```bash
+npm run build
+```
+
+Compiles TypeScript and outputs production assets to `dist/`.
+
+### Preview Production Build
+
+```bash
+npm run preview
+```
+
+### Lint
+
+```bash
+npm run lint
+```
+
+### Format
+
+```bash
+# Check formatting
+npm run format:check
+
+# Apply formatting
+npm run format
 ```

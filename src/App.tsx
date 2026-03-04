@@ -30,7 +30,7 @@ function FrontEndLayout({ children }: Readonly<{ children: ReactNode }>) {
 
   useEffect(() => {
     const handleResize = () => {
-      const mobile = window.innerWidth < 768
+      const mobile = window.innerWidth < 992
       setIsMobile(mobile)
       setCollapsed(mobile)
     }

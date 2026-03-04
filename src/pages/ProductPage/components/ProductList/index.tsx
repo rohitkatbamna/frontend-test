@@ -33,11 +33,12 @@ function FilterLabel({
       <Badge
         count={count}
         showZero
-        style={{ backgroundColor: bg, color: textColor, border: 'none' }}
-        styles={{
-          root: {
-            border: 'none',
-          },
+        style={{
+          backgroundColor: bg,
+          color: textColor,
+          border: 'none',
+          boxShadow: 'none',
+          borderRadius: '4px',
         }}
       />
     </span>
@@ -142,7 +143,7 @@ function ProductList({ onAddProduct }: Readonly<ProductListProps>) {
             )}
             split={false}
             className="product-list__items"
-            style={{ height: getScreenHeight(280) }}
+            style={{ height: getScreenHeight(290) }}
           />
           <Pagination
             className="product-list__pagination"
