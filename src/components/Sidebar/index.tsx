@@ -7,6 +7,7 @@ import {
 } from '@ant-design/icons'
 import { Avatar, Layout, Menu, Switch } from 'antd'
 import { useLocation, useNavigate } from 'react-router-dom'
+import BirdBoxIcon from '../../assets/BirdBoxIcon'
 
 const { Sider } = Layout
 
@@ -42,7 +43,11 @@ const getSelectedFromPath = (pathname: string) => {
   return 'product-list'
 }
 
-function Sidebar({ selectedKey, userName = 'Mia Smith', userRole = 'Vendor' }: Readonly<SidebarProps>) {
+function Sidebar({
+  selectedKey,
+  userName = 'Mia Smith',
+  userRole = 'Vendor',
+}: Readonly<SidebarProps>) {
   const location = useLocation()
   const navigate = useNavigate()
   const activeKey = selectedKey ?? getSelectedFromPath(location.pathname)
@@ -50,7 +55,7 @@ function Sidebar({ selectedKey, userName = 'Mia Smith', userRole = 'Vendor' }: R
   return (
     <Sider width={248} className="product-sider" breakpoint="lg" collapsedWidth={0}>
       <div className="brand-row">
-        <div className="brand-mark">B</div>
+        <BirdBoxIcon />
         <span>BIRDBOX</span>
       </div>
 
