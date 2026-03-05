@@ -30,7 +30,7 @@ function FrontEndLayout({
   padding = '0 24px',
 }: Readonly<{ children: ReactNode; padding: string }>) {
   const [collapsed, setCollapsed] = useState(false)
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth < 992)
 
   useEffect(() => {
     const handleResize = () => {
