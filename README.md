@@ -8,19 +8,20 @@ A product management and gifting frontend application built with React, TypeScri
 
 ### Product List (`/product-list`)
 
-- Browse all products in a paginated, searchable list
+- Browse all products in a searchable list with a pagination UI
 - Filter by status — **All**, **Active**, or **Inactive** — with live counts
-- Filter by category via dropdown
+- Category dropdown present in the toolbar (currently shows "All Categories" only)
 - Search products by name with instant filtering
-- Add new products through a full-featured modal form:
-  - General information: name, description, category, processing time, and price
+- Add new products through a modal form:
+  - General information: name, category, and price (stored); description and processing time fields are present in the form but not persisted
   - Product media: drag-and-drop image upload
-- Products are added to the global store and appear in the list immediately
+- New products are dispatched to the Redux store and appear in the list immediately
+- Delete products via the `deleteProduct` action
 
 ### Send Item (`/send-item`)
 
-- Browse an item grid with search and sort controls
-- Side filter panel for refining the item list
+- Browse an item grid
+- Search bar, sort control, and side filter panel are present in the UI
 - Click an item card to open a details modal
 - Send the item as a gift through a multi-step flow:
   1. **Item Details** — review the selected item
@@ -29,8 +30,9 @@ A product management and gifting frontend application built with React, TypeScri
 
 ### General
 
-- Responsive layout: collapsible sidebar on desktop, mobile-friendly drawer navigation on smaller screens
+- Responsive layout: collapsible sidebar on desktop, drawer navigation on screens narrower than 992 px
 - Consistent Ant Design component library throughout
+- All product and item data is sourced from local mock files — no API calls are made
 
 ## Tech Stack
 
@@ -42,9 +44,7 @@ A product management and gifting frontend application built with React, TypeScri
 | UI Library       | Ant Design 6                |
 | State Management | Redux Toolkit + React-Redux |
 | Routing          | React Router DOM 7          |
-| HTTP Client      | Axios                       |
-| Date Utility     | Day.js                      |
-| Styling          | CSS Modules                 |
+| Styling          | Plain CSS                   |
 | Linting          | ESLint + typescript-eslint  |
 | Formatting       | Prettier                    |
 
@@ -60,8 +60,7 @@ src/
 │   ├── ProductPage/    # Product list, add product modal, success modal
 │   └── SendItemPage/   # Item grid, item details, send gift, order success
 ├── store/              # Redux store, productSlice, itemSlice
-├── types/              # Shared TypeScript interfaces (Product, Item)
-└── utils/              # Utility helpers (e.g. getScreenHeight)
+└── types/              # Shared TypeScript interfaces (Product, Item)
 ```
 
 ## Getting Started
