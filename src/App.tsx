@@ -13,7 +13,7 @@ const { Sider, Content, Footer } = Layout
 
 function App() {
   return (
-    <FrontEndLayout>
+    <FrontEndLayout padding={location.pathname === '/send-item' ? '0' : '0 24px'}>
       <Routes>
         <Route path="/" element={<Navigate to="/product-list" replace />} />
         <Route path="/product-list" element={<ProductPage />} />
@@ -24,7 +24,10 @@ function App() {
   )
 }
 
-function FrontEndLayout({ children }: Readonly<{ children: ReactNode }>) {
+function FrontEndLayout({
+  children,
+  padding = '0 24px',
+}: Readonly<{ children: ReactNode; padding: string }>) {
   const [collapsed, setCollapsed] = useState(false)
   const [isMobile, setIsMobile] = useState(() => window.innerWidth < 768)
 
@@ -55,7 +58,7 @@ function FrontEndLayout({ children }: Readonly<{ children: ReactNode }>) {
         <Sidebar collapsed={collapsed} setCollapsed={setCollapsed} />
       </Sider>
       <Layout className="app-content-layout">
-        <Content style={{ padding: '0 24px' }}>{children}</Content>
+        <Content style={{ padding }}>{children}</Content>
         <Footer style={{ padding: 0 }}>
           <PageFooter />
         </Footer>

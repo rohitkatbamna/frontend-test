@@ -41,3 +41,43 @@
   align-items: center;
   gap: 8px;
 }
+
+.dark-mode-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sider-bottom {
+  margin-top: auto;
+  border-top: 1px solid #e2e2e2;
+  padding: 18px 12px;
+}
+
+.user-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-name {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.user-role {
+  color: #7d7d7d;
+  font-size: 13px;
+}
+
+.logout-btn {
+  margin-top: 16px;
+  border: 0;
+  background: none;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+  cursor: pointer;
+  color: inherit;
+}

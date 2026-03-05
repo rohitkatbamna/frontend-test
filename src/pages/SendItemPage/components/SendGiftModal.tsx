@@ -11,6 +11,9 @@ interface SendGiftModalProps {
   onConfirm: () => void
 }
 
+const MODAL_BODY_STYLES = { backgroundColor: '#fafafa', padding: 24, borderRadius: 8 }
+const MODAL_CONTAINER_STYLES = { padding: '0px' }
+
 function SendGiftModal({ open, item, form, onClose, onConfirm }: Readonly<SendGiftModalProps>) {
   return (
     <Modal
@@ -22,6 +25,7 @@ function SendGiftModal({ open, item, form, onClose, onConfirm }: Readonly<SendGi
       closeIcon={<CloseOutlined />}
       destroyOnHidden
       centered
+      styles={{ body: MODAL_BODY_STYLES, container: MODAL_CONTAINER_STYLES }}
     >
       <div className="modal-title">Send Gift</div>
       <p className="modal-subtitle">

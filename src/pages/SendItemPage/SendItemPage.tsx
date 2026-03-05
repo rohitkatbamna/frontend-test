@@ -1,5 +1,5 @@
 import { SearchOutlined, SortAscendingOutlined } from '@ant-design/icons'
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, Typography } from 'antd'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../../store/store'
@@ -45,7 +45,7 @@ function SendItemPage() {
   return (
     <div>
       <div className="send-top-row">
-        <h1>Send Item</h1>
+        <Typography.Title level={1}>Send Item</Typography.Title>
         <div className="send-actions">
           <Input
             size="large"
