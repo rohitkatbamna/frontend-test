@@ -113,7 +113,9 @@ function ProductList({ onAddProduct }: Readonly<ProductListProps>) {
               onChange={(e) => setSearch(e.target.value)}
               allowClear
             />
-            <Button icon={<FilterOutlined />} className="hide-mobile" />
+            <Button className="hide-mobile">
+              <FilterOutlined />
+            </Button>
             <Button icon={<CheckOutlined />} className="hide-mobile">
               Bulk Action
             </Button>

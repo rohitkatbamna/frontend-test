@@ -1,5 +1,5 @@
 import { DeleteOutlined, EllipsisOutlined } from '@ant-design/icons'
-import { Checkbox, Divider, Dropdown, Image, Typography } from 'antd'
+import { Button, Checkbox, Divider, Dropdown, Image, Typography } from 'antd'
 import type { MenuProps } from 'antd'
 import type { Product } from '../../../../types/product'
 import imageGiven from '../../../../assets/gift.png'
@@ -12,7 +12,7 @@ interface ProductCardProps {
 }
 
 const STATUS_COLORS = {
-  Active: { border: '#389E0D', color: '#389E0D' },
+  Active: { border: '#B7EB8F', background: '#F6FFED', color: '#52C41A' },
   Inactive: { border: '#D9D9D9', color: '#8C8C8C' },
 }
 
@@ -50,14 +50,15 @@ function ProductCard({ product }: Readonly<ProductCardProps>) {
           <Typography.Text className="product-card__price">${product.price}</Typography.Text>
         </div>
       </div>
-      <Divider type="vertical" className="product-card__divider" />
-      <div className="product-card__id-block">
-        <Typography.Text type="secondary" className="product-card__id-label">
-          Product ID
-        </Typography.Text>
-        <Typography.Text strong>{product.id}</Typography.Text>
+      <div className="product-card__divider-container">
+        <Divider type="vertical" className="product-card__divider" />
+        <div className="product-card__id-block">
+          <Typography.Text type="secondary" className="product-card__id-label">
+            Product ID
+          </Typography.Text>
+          <Typography.Text strong>{product.id}</Typography.Text>
+        </div>
       </div>
-      <Divider type="vertical" className="product-card__divider" />
       <div className="product-card__actions">
         <div
           className="product-card__status"
@@ -65,10 +66,11 @@ function ProductCard({ product }: Readonly<ProductCardProps>) {
         >
           {product.status}
         </div>
-
-        <Dropdown menu={{ items: menuItems }} trigger={['click']} placement="bottomRight">
-          <EllipsisOutlined className="product-card__menu-icon" />
-        </Dropdown>
+        <Button size="small">
+          <Dropdown menu={{ items: menuItems }} trigger={['click']} placement="bottomRight">
+            <EllipsisOutlined className="product-card__menu-icon" rotate={90} />
+          </Dropdown>
+        </Button>
       </div>
     </div>
   )
