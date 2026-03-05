@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { Layout } from 'antd'
 
 import PageFooter from './components/PageFooter/PageFooter'
@@ -12,6 +12,7 @@ import './App.css'
 const { Sider, Content, Footer } = Layout
 
 function App() {
+  const location = useLocation()
   return (
     <FrontEndLayout padding={location.pathname === '/send-item' ? '0' : '0 24px'}>
       <Routes>
