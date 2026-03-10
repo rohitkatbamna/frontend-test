@@ -1,11 +1,13 @@
-import { DeleteOutlined, EllipsisOutlined } from '@ant-design/icons'
-import { Button, Checkbox, Divider, Dropdown, Image, Typography } from 'antd'
+import { DeleteOutlined, EditOutlined, EllipsisOutlined } from '@ant-design/icons'
+import { Button, Checkbox, Divider, Dropdown, Form, Image, Modal, Typography } from 'antd'
 import type { MenuProps } from 'antd'
 import type { Product } from '../../../../types/product'
 import imageGiven from '../../../../assets/gift.png'
 import { useAppDispatch } from '../../../../hooks/useAppDispatch'
-import { deleteProduct } from '../../../../store/productSlice'
+import { deleteProduct, updateProduct } from '../../../../store/productSlice'
 import './ProductCard.css'
+import { useState } from 'react'
+import { MainAddEditForm } from '../AddProductModal'
 
 interface ProductCardProps {
   product: Product
@@ -16,10 +18,16 @@ const STATUS_COLORS = {
   Inactive: { border: '#D9D9D9', color: '#8C8C8C' },
 }
 
-function ProductCard({ product }: Readonly<ProductCardProps>) {
+function ProductCard({ product }: Readonly<any>) {
   const dispatch = useAppDispatch()
-
+  const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false)
   const menuItems: MenuProps['items'] = [
+    {
+      key: 'update',
+      label: 'Update',
+      icon: <EditOutlined />,
+      onClick: () => setIsUpdateModalOpen(true),
+    },
     {
       key: 'delete',
       label: 'Delete',
@@ -72,7 +80,40 @@ function ProductCard({ product }: Readonly<ProductCardProps>) {
           </Dropdown>
         </Button>
       </div>
+      <UpdateProductModal
+        isOpen={isUpdateModalOpen}
+        setIsOpen={setIsUpdateModalOpen}
+        product={product}
+      />
     </div>
+  )
+}
+
+function UpdateProductModal({ isOpen, setIsOpen, product }: any) {
+  const [form] = Form.useForm<any>()
+  const dispatch = useAppDispatch()
+  const handleFinish = (values: any) => {
+    dispatch(updateProduct({ id: product.id, ...values }))
+    setIsOpen(false)
+  }
+  return (
+    <Modal
+      open={isOpen}
+      onCancel={() => setIsOpen(false)}
+      footer={null}
+      width={1200}
+      centered
+      className="update-product-modal"
+      destroyOnHidden
+    >
+      <MainAddEditForm
+        form={form}
+        handleFinish={handleFinish}
+        isEdit={true}
+        initialValues={product}
+        onCancel={() => setIsOpen(false)}
+      />
+    </Modal>
   )
 }
 
